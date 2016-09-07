@@ -74,7 +74,7 @@ class Citadel
       end
 
       begin
-        Chef::HTTP.new("https://#{hostname}").get("#{bucket}/#{path}", headers)
+        Chef::HTTP.new("https://#{hostname}").get("#{bucket}/#{path}", headers).chomp("\n")
       rescue Net::HTTPServerException => e
         raise CitadelError.new("Unable to download #{path}: #{e}")
       end
